@@ -1,0 +1,27 @@
+<div class="ui grid" ng-controller="homeCtrl">
+  <div class="four wide column"></div>
+  <div class="eight wide column">
+    <form class="ui form">
+      <h3>Porfavor inicia sesion para ver todo el contenido {[hola]}</h3>
+      <div class="field">
+        <label>Usuario</label>
+        <input type="text" name="first-name" ng-model="usr.usr" placeholder="usuario">
+      </div>
+      <div class="field">
+        <label>Contraseña</label>
+        <input type="password" name="last-name" ng-model="usr.pass" placeholder="Contraseña">
+      </div>
+      <button class="ui button" type="submit" ng-click="btnDoSome(usr)">Submit</button>
+    </form>
+    <div class="ui icon message" ng-show="show_login">
+      <i class="inbox icon"></i>
+      <div class="content">
+        <div class="header">
+          Ops... Hubo un error! Con tus credenciales.
+        </div>
+        <p>Vuelve a intentarlo.</p>
+      </div>
+    </div>
+  </div>
+  <div class="four wide column"></div>
+</div>

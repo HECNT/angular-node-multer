@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Angular Multer NodeJs</title>
+    <link rel="stylesheet" type="text/css" href="http://localhost:3003/dist/semantic.min.css">
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script src="http://localhost:3003/dist/semantic.js"></script>
+  </head>
+  <body ng-app="home" ng-controller="homeCtrl">
+    <div class="ui inverted segment">
+      <div class="ui inverted secondary menu">
+        <a class="active item" href="http://localhost:3003/">
+          Carga de archivos
+        </a>
+        <a class="item">
+          Sobre la app
+        </a>
+        <a class="item right" ng-show="{{usuario}}" ng-click="btnCierra()">
+          Cerrar sesion
+        </a>
+      </div>
+    </div>
+    {{{body}}}
+  </body>
+  <script src="http://localhost:3003/js/build.js"></script>
+</html>
