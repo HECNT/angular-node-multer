@@ -29,6 +29,14 @@ router.get('/inicio', function(req, res) {
 	}
 });
 
+router.get('/about', function(req, res) {
+  if(req.session.usuario) {
+		res.render('about', {usuario:true, url : 'http://localhost:3003/'})
+	} else {
+		res.redirect('/login')
+	}
+});
+
 router.get('/subir/archivo', function(req, res) {
   if(req.session.usuario) {
 		res.render('upload', {usuario:true, url : 'http://localhost:3003/'})

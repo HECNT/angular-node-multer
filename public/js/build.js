@@ -20,6 +20,12 @@ angular.module(MODULE_NAME)
   var ctrl = this;
   $scope.hola = "new life"
 
+  HomeService.getData()
+  .success(function(result){
+    $scope.files = result
+    console.log($scope.files);
+  })
+
   $scope.show_login = false
   $scope.btnDoSome = function (item) {
     console.log(item);
@@ -44,7 +50,42 @@ angular.module(MODULE_NAME)
     })
   }
 
+  $scope.show_dialog = false
+  $scope.uploadFile = function(){
+    var file = $scope.myFile;
+    console.log(file);
+    $scope.show_dialog = true
+    HomeService.uploadFileToUrl(file)
+    setTimeout(function () {
+      location.reload()
+    }, 5000);
+  };
+
+  $scope.btnEliminar = function (d) {
+    console.log(d);
+    HomeService.doDelete(d)
+    .success(function(result){
+      location.reload()
+    })
+  }
+
 }]);
+
+    angular.module(MODULE_NAME)
+    .directive('fileModel', ['$parse', function ($parse) {
+        return {
+           restrict: 'A',
+           link: function(scope, element, attrs) {
+              var model = $parse(attrs.fileModel);
+              var modelSetter = model.assign;
+              element.bind('change', function(){
+                 scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                 });
+              });
+           }
+        };
+     }]);
 
 },{"../services/home":3}],3:[function(require,module,exports){
 // var url = helpers.getUrl();
@@ -64,6 +105,23 @@ angular.module(MODULE_NAME)
 
   this.doCierra = function () {
     return $http.get(urlBase + '/do-cierra')
+  }
+
+  this.getData = function () {
+    return $http.get(urlBase + '/get-data')
+  }
+
+  this.uploadFileToUrl = function (file) {
+    var fd = new FormData();
+    fd.append('file', file);
+    return $http.post(urlBase + '/upload-file', fd, {
+              transformRequest: angular.identity,
+              headers: {'Content-Type': undefined}
+           })
+  }
+
+  this.doDelete = function (d) {
+    return $http.post(urlBase + '/do-delete', d)
   }
 
 }]);

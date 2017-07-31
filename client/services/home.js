@@ -17,4 +17,21 @@ angular.module(MODULE_NAME)
     return $http.get(urlBase + '/do-cierra')
   }
 
+  this.getData = function () {
+    return $http.get(urlBase + '/get-data')
+  }
+
+  this.uploadFileToUrl = function (file) {
+    var fd = new FormData();
+    fd.append('file', file);
+    return $http.post(urlBase + '/upload-file', fd, {
+              transformRequest: angular.identity,
+              headers: {'Content-Type': undefined}
+           })
+  }
+
+  this.doDelete = function (d) {
+    return $http.post(urlBase + '/do-delete', d)
+  }
+
 }]);

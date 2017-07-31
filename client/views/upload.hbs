@@ -3,7 +3,56 @@
   <div class="twelve wide column">
     <center>
       <h1>Bienvenido a la carga de documentos con AngularJs y Multer</h1><hr>
-    <center>
+    </center>
+      <div class="ui grid">
+        <div class="eight wide column">
+          <form class="ui form">
+            <h3>Subir nuevo archivo</h3>
+            <div class="field">
+              <label>Archivo</label>
+              <input type="file" file-model = "myFile">
+            </div>
+            <button class="ui button blue" ng-hide="show_dialog" type="submit" ng-click="uploadFile()">Subir</button>
+            <div class="ui icon message" ng-show="show_dialog">
+              <i class="notched circle loading icon"></i>
+              <div class="content">
+                <div class="header">
+                  Espere un momento!
+                </div>
+                <p>Se esta subiendo su archivo.</p>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="eight wide column">
+          <h3>Archivos subidos</h3>
+          <center>
+          <table class="ui very basic collapsing celled table">
+            <thead>
+              <th>Nombre</th>
+              <th>Descargar</th>
+              <th>Eliminar</th>
+            </thead>
+            <tbody>
+              <tr ng-repeat="i in files">
+                <td>{[i.nombre]}</td>
+                <td>
+                  <h4 class="ui image header">
+                      <a href="{{url}}/upload/{[i.nombre]}">
+                        <img src="{{url}}img/save.png" class="ui mini rounded image">
+                  </h4>
+                </td>
+                <td>
+                  <button class="circular ui icon button red" ng-click="btnEliminar(i)">
+                    <i class="icon remove"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </center>
+        </div>
+      </div>
   </div>
   <div class="two wide column"></div>
 </div>

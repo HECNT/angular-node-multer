@@ -5,6 +5,9 @@ var express         = require('express')
     exphbs          = require('express-handlebars');
     expressSession  = require('express-session');
     cookieParser    = require('cookie-parser');
+    path            = require('path');
+    http            = require('http');
+    multer          = require('multer');
 
 app.use(bodyParser.json());
 app.use(bodyParser());
